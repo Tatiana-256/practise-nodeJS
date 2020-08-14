@@ -5,9 +5,9 @@ const getUser = () => {
     return readFile('users.json')
 }
 
-const addUser = async () => {
+const addUser = async (name) => {
     let users = await getUser()
-    users.push({name: 'Masha', id: 3})
+    users.push({name: 'name', id: Date.now().toString()})
     return writeFile('users.json', users)
 
 

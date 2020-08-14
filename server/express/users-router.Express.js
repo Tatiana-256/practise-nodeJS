@@ -10,11 +10,13 @@ usersRouter.use(function (req, res, next) {
 
 
 usersRouter.get('/', async (req, res) => {
-    let users = await getUser(
+    let users = await getUser()
 
+    if (!!req.query.search) {
+        users = users.filter(u => u.name.indexOf(req.query.search) > -1)
+    }
 
-)
-    res.send(JSON.stringify(users))
+    res.send(users)
 })
 
 usersRouter.get('/:id', async (req, res) => {
@@ -29,7 +31,8 @@ usersRouter.get('/:id', async (req, res) => {
 
 
 usersRouter.post('/', async (req, res) => {
-    let result = await addUser()
+    let name = req.body.name
+    let result = await addUser(name)
     res.send('ok')
 })
 
