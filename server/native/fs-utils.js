@@ -12,6 +12,8 @@ exports.readFile = (filePath) => {
     return promise
 }
 
+
+
 exports.writeFile = (filePath, data) => {
     return new Promise((res, rej) => {
             fs.writeFile(filePath, JSON.stringify(data),
