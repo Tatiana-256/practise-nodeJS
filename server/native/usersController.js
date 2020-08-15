@@ -3,7 +3,7 @@ let {addUser, getUser} = require("./repository")
 
 const usersController = async (req, res) => {
     if (req.method === "POST") {
-        let result = await addUser()
+        await addUser()
         res.write('ok')
         res.end()
 

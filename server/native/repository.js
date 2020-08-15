@@ -1,14 +1,21 @@
 const fs = require('fs')
 let {readFile, writeFile} = require("./fs-utils")
 
+
+const mongoose = require('mongoose');
+const userSchema = new mongoose.Schema({
+    name: String,
+});
+
+const User =  mongoose.model('Users', userSchema);
+
 const getUser = () => {
-    return readFile('users.json')
+    User.find()
 }
 
 const addUser = async (name) => {
-    let users = await getUser()
-    users.push({name: 'name', id: Date.now().toString()})
-    return writeFile('users.json', users)
+    let user = new User({name})
+    return user.save()
 
 
 }

@@ -1,5 +1,14 @@
 const {usersRouter} = require("./users-router.Express.js");
 
+
+// set mongoose
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/users', {useNewUrlParser: true})
+
+
+
+// set express
+
 const express = require('express')
 const cors = require('cors')
 const app = express()
@@ -14,7 +23,7 @@ app.use(bodyParser.json())
 
 // cors
 app.use(cors())
-const port = 3333
+const port = 4412
 
 // routing
 app.use('/users', usersRouter)
